@@ -23626,21 +23626,23 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1)
-	var Router = __webpack_require__(157)
-	var Link = Router.Link
+	//var Router = require('react-router')
+	//var Link = Router.Link
 
-	var Header = React.createClass({displayName: "Header",
+	var Nav = React.createClass({displayName: "Nav",
 	  render: function () {
 	    return (
 	      React.createElement("header", null, 
-	        React.createElement(Link, {to: "/"}, "Index"), 
-	        React.createElement(Link, {to: "/getting-started"}, "Getting Started")
+	        "// ", React.createElement(Link, {to: "/"}, "Index"), 
+	        "// ", React.createElement(Link, {to: "/getting-started"}, "Getting Started"), 
+	        React.createElement("a", {href: "/"}, "Index"), 
+	        React.createElement("a", {href: "/getting-started"}, "Getting Started")
 	      )
 	    )
 	  }
 	})
 
-	module.exports = Header
+	module.exports = Nav
 
 
 /***/ },

@@ -1,0 +1,29 @@
+{
+  "name": "p5-mobile-cookbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack --progress --colors",
+    "dev": "webpack-dev-server --progress --colors",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OhJia/p5-mobile-cookbook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OhJia/p5-mobile-cookbook/issues"
+  },
+  "homepage": "https://ohjia.github.com/p5-mobile-cookbook",
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "static-site-generator-webpack-plugin": "^1.1.0",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
+  }
+}

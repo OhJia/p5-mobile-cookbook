@@ -1,0 +1,5 @@
+@import 'basscss';
+
+:root {
+  --font-family: 'Avenir Next', 'Hevletica Neue', sans-serif;
+}

@@ -1,16 +1,18 @@
 var React = require('react')
-var Router = require('react-router')
-var Link = Router.Link
+//var Router = require('react-router')
+//var Link = Router.Link
 
-var Header = React.createClass({
+var Nav = React.createClass({
   render: function () {
     return (
       <header>
-        <Link to='/'>Index</Link>
-        <Link to='/getting-started'>Getting Started</Link>
+        // <Link to='/'>Index</Link>
+        // <Link to='/getting-started'>Getting Started</Link>
+        <a href='/'>Index</a>
+        <a href='/getting-started'>Getting Started</a>
       </header>
     )
   }
 })
 
-module.exports = Header
+module.exports = Nav

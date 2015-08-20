@@ -23569,11 +23569,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Root = __webpack_require__(197)
 	var Index = __webpack_require__(201)
 	var GettingStarted = __webpack_require__(202)
+	var Example = __webpack_require__(203)
 
 	var Routes = (
 	  React.createElement(Route, {handler: Root, path: "/"}, 
 	    React.createElement(DefaultRoute, {handler: Index}), 
-	    React.createElement(Route, {path: "/getting-started", handler: GettingStarted})
+	    React.createElement(Route, {path: "/getting-started", handler: GettingStarted}), 
+	    React.createElement(Route, {path: "/example", handler: Example})
 	  )
 	)
 
@@ -23599,7 +23601,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement("html", null, 
 	        React.createElement("head", null, 
 	          React.createElement("title", null, this.props.title), 
-	          React.createElement("style", {dangerouslySetInnerHTML: { __html: css}})
+	          React.createElement("style", {dangerouslySetInnerHTML: { __html: css}}), 
+	          React.createElement("script", {src: "/shared/p5.min.js"}), 
+	          React.createElement("script", {src: "/sketches/sketch.js"})
+
 	        ), 
 	        React.createElement("body", {className: "p2"}, 
 	          React.createElement(Nav, null), 
@@ -23626,21 +23631,43 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1)
-	//var Router = require('react-router')
-	//var Link = Router.Link
+	var Router = __webpack_require__(157)
+	var Link = Router.Link
 
 	var Nav = React.createClass({displayName: "Nav",
-	  render: function () {
-	    return (
-	      React.createElement("header", null, 
-	        "// ", React.createElement(Link, {to: "/"}, "Index"), 
-	        "// ", React.createElement(Link, {to: "/getting-started"}, "Getting Started"), 
-	        React.createElement("a", {href: "/"}, "Index"), 
-	        React.createElement("a", {href: "/getting-started"}, "Getting Started")
-	      )
-	    )
-	  }
+
+		render: function () {
+			return (
+				React.createElement("nav", {className: "sm-flex border-bottom"}, 
+			        React.createElement("a", {href: this.props.baseUrl, 
+			          className: "btn py2"}, 
+			          "Index"
+			        ), 
+			        React.createElement("a", {href: this.props.baseUrl + 'getting-started', 
+			          className: "btn py2"}, 
+			          "Getting Started"
+			        ), 
+			        React.createElement("a", {href: this.props.baseUrl + 'example', 
+			          className: "btn py2 sm-show"}, 
+			          "Example"
+			        )
+			    )
+			)
+		}
+
 	})
+
+	// var Nav = React.createClass({
+	//   render: function () {
+	//     return (
+	//       <header>
+	//         <Link to='/'>Index</Link>
+	//         <Link to='/getting-started'>Getting Started</Link>
+	//         <Link to='/example'>Example</Link>
+	//       </header>
+	//     )
+	//   }
+	// })
 
 	module.exports = Nav
 
@@ -23750,6 +23777,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	})
 
 	module.exports = GettingStarted
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+
+	var Example = React.createClass({displayName: "Example",
+	  render: function () {
+	    return (
+	      React.createElement("main", null, 
+	        React.createElement("div", {id: "p5Container"})
+	      )
+	    )
+	  }
+	})
+
+	module.exports = Example
 
 /***/ }
 /******/ ])

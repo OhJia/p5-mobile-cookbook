@@ -9,15 +9,15 @@ var Nav = React.createClass({
 			<nav className='sm-flex border-bottom'>
 		        <a href={this.props.baseUrl} 
 		          className='btn py2'>
-		          Index
+		          p5 MOBILE COOKBOOK
 		        </a>
 		        <a href={this.props.baseUrl + 'getting-started'}
 		          className='btn py2'>
 		          Getting Started
 		        </a>
-		        <a href={this.props.baseUrl + 'example'}
+		        <a href={this.props.baseUrl + 'examples'}
 		          className='btn py2 sm-show'>
-		          Example
+		          Examples
 		        </a>
 		    </nav>
 		)

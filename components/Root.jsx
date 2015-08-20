@@ -15,8 +15,6 @@ var Root = React.createClass({
         <head>
           <title>{this.props.title}</title>
           <style dangerouslySetInnerHTML={{ __html: css }} />
-          <script src='/shared/p5.min.js' />
-
         </head>
         <body className='p2'>
           <Nav {...this.props} />

@@ -1,13 +1,14 @@
 var React = require('react')
 
-var Example = React.createClass({
+var Single = React.createClass({
   render: function () {
     return (
       <main>
+      	<script src="/sketches/sketch.js"></script>
         <div id="p5Container"></div>       
       </main>
     )
   }
 })
 
-module.exports = Example
+module.exports = Single

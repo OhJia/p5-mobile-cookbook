@@ -23566,18 +23566,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Router = __webpack_require__(157)
 	var Route = Router.Route
 	var DefaultRoute = Router.DefaultRoute
+	var Redirect = Router.Redirect
 	var Root = __webpack_require__(197)
 	var Index = __webpack_require__(201)
 	var GettingStarted = __webpack_require__(202)
+	var Examples = __webpack_require__(203)
+	var Single = __webpack_require__(204)
 
 	var Routes = (
-	  React.createElement(Route, {handler: Root, path: "/"}, 
+	  React.createElement(Route, {handler: Root, path: "/p5-mobile-cookbook/"}, 
 	    React.createElement(DefaultRoute, {handler: Index}), 
-	    React.createElement(Route, {path: "/getting-started", handler: GettingStarted})
+	    React.createElement(Route, {path: "/p5-mobile-cookbook/getting-started", handler: GettingStarted}), 
+	    React.createElement(Route, {path: "/p5-mobile-cookbook/examples", handler: Examples}), 
+	    React.createElement(Route, {path: "/p5-mobile-cookbook/examples/single", handler: Single}), 
+
+	    "// ", React.createElement(Redirect, {from: "/p5-mobile-cookbook/getting-started/", to: "/p5-mobile-cookbook/getting-started"}), 
+	    "// ", React.createElement(Redirect, {from: "/p5-mobile-cookbook/examples/", to: "/p5-mobile-cookbook/examples"})
 	  )
 	)
 
 	module.exports = Routes
+
+	// var Routes = (
+	//   <Route handler={Root} path='/p5-mobile-cookbook/'>
+	//     <DefaultRoute handler={Index} />
+	//     <Route path='getting-started/' handler={GettingStarted} />
+	//     <Route path='example/' handler={Example} />
+
+	//     <Redirect from='/p5-mobile-cookbook/getting-started/' to='/p5-mobile-cookbook/getting-started' />
+	//     <Redirect from='/p5-mobile-cookbook/example/' to='/p5-mobile-cookbook/example' />
+	//   </Route>
+	// )
 
 /***/ },
 /* 197 */
@@ -23599,16 +23618,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement("html", null, 
 	        React.createElement("head", null, 
 	          React.createElement("title", null, this.props.title), 
-	          React.createElement("style", {dangerouslySetInnerHTML: { __html: css}})
+	          React.createElement("style", {dangerouslySetInnerHTML: { __html: css}}), 
+	          React.createElement("script", {src: "/shared/p5.min.js"})
+
 	        ), 
 	        React.createElement("body", {className: "p2"}, 
-	          React.createElement(Nav, null), 
+	          React.createElement(Nav, React.__spread({},  this.props)), 
 	          React.createElement(RouteHandler, React.__spread({},  this.props)), 
 	          React.createElement("script", {
 	            id: "initial-props", 
 	            type: "application/json", 
 	            dangerouslySetInnerHTML: initialProps}), 
-	          React.createElement("script", {src: "bundle.js"})
+	          React.createElement("script", {src: 'bundle.js'})
 	        )
 	      )
 	    )
@@ -23626,21 +23647,43 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1)
-	//var Router = require('react-router')
-	//var Link = Router.Link
+	var Router = __webpack_require__(157)
+	var Link = Router.Link
 
 	var Nav = React.createClass({displayName: "Nav",
-	  render: function () {
-	    return (
-	      React.createElement("header", null, 
-	        "// ", React.createElement(Link, {to: "/"}, "Index"), 
-	        "// ", React.createElement(Link, {to: "/getting-started"}, "Getting Started"), 
-	        React.createElement("a", {href: "/"}, "Index"), 
-	        React.createElement("a", {href: "/getting-started"}, "Getting Started")
-	      )
-	    )
-	  }
+
+		render: function () {
+			return (
+				React.createElement("nav", {className: "sm-flex border-bottom"}, 
+			        React.createElement("a", {href: this.props.baseUrl, 
+			          className: "btn py2"}, 
+			          "p5 MOBILE COOKBOOK"
+			        ), 
+			        React.createElement("a", {href: this.props.baseUrl + 'getting-started', 
+			          className: "btn py2"}, 
+			          "Getting Started"
+			        ), 
+			        React.createElement("a", {href: this.props.baseUrl + 'examples', 
+			          className: "btn py2 sm-show"}, 
+			          "Examples"
+			        )
+			    )
+			)
+		}
+
 	})
+
+	// var Nav = React.createClass({
+	//   render: function () {
+	//     return (
+	//       <header>
+	//         <Link to='/'>Index</Link>
+	//         <Link to='/getting-started'>Getting Started</Link>
+	//         <Link to='/example'>Example</Link>
+	//       </header>
+	//     )
+	//   }
+	// })
 
 	module.exports = Nav
 
@@ -23750,6 +23793,92 @@ return /******/ (function(modules) { // webpackBootstrap
 	})
 
 	module.exports = GettingStarted
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+
+	var Examples = React.createClass({displayName: "Examples",
+
+	  renderLink: function(item, i) {
+	    return (
+	      React.createElement("li", {key: i}, 
+	        React.createElement("a", {href: item.href, 
+	          className: "h2 bold block"}, 
+	          item.label
+	        )
+	      )
+	    )
+	  },
+
+	  render: function () {
+	    var styles = {
+	      container: {
+	        minHeight: '90vh'
+	      }
+	    }
+	    var links = [
+	      { href: '/p5-mobile-cookbook/examples/single', label: 'p5 Acceleration Shake' },
+	      { href: '/p5-mobile-cookbook/examples/single', label: 'p5 Acceleration Bounce' }
+	    ]
+
+	    return (
+	      React.createElement("div", {
+	        className: "container px3 py3", 
+	        style: styles.container}, 
+	        React.createElement("div", {className: "sm-flex mxn2"}, 
+	          React.createElement("div", {className: "flex-auto px2"}, 
+	            React.createElement("h1", null, "Examples"), 
+	            React.createElement("ul", {className: "list-reset"}, 
+	              links.map(this.renderLink)
+	            )
+	          ), 
+	          React.createElement("div", {className: "px2 py4"}
+	          )
+	        )
+	      )
+	    )
+	  }
+
+	})
+
+	module.exports = Examples
+
+
+	// var React = require('react')
+
+	// var Examples = React.createClass({
+	//   render: function () {
+	//     return (
+	//       <main>
+	//         <div id="p5Container"></div>       
+	//       </main>
+	//     )
+	//   }
+	// })
+
+	// module.exports = Examples
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+
+	var Single = React.createClass({displayName: "Single",
+	  render: function () {
+	    return (
+	      React.createElement("main", null, 
+	      	React.createElement("script", {src: "/sketches/sketch.js"}), 
+	        React.createElement("div", {id: "p5Container"})
+	      )
+	    )
+	  }
+	})
+
+	module.exports = Single
 
 /***/ }
 /******/ ])

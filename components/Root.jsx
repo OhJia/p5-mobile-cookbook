@@ -15,15 +15,17 @@ var Root = React.createClass({
         <head>
           <title>{this.props.title}</title>
           <style dangerouslySetInnerHTML={{ __html: css }} />
+          <script src='/shared/p5.min.js' />
+
         </head>
         <body className='p2'>
-          <Nav />
+          <Nav {...this.props} />
           <RouteHandler {...this.props} />
           <script
             id='initial-props'
             type='application/json'
             dangerouslySetInnerHTML={initialProps} />
-          <script src='bundle.js' />
+          <script src={'bundle.js'} />
         </body>
       </html>
     )

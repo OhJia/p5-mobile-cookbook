@@ -1,10 +1,10 @@
 module.exports = {
   title: 'p5 mobile cookbook',
-  baseUrl: '/cookbook/',
+  baseUrl: '/p5-mobile-cookbook/',
   routes: [
-    '/cookbook/',
-    '/cookbook/getting-started',
-    '/cookbook/example'
+    '/p5-mobile-cookbook/',
+    '/p5-mobile-cookbook/getting-started',
+    '/p5-mobile-cookbook/example'
   ]
 }
 

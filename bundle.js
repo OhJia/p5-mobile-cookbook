@@ -23566,16 +23566,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Router = __webpack_require__(157)
 	var Route = Router.Route
 	var DefaultRoute = Router.DefaultRoute
+	var Redirect = Router.Redirect
 	var Root = __webpack_require__(197)
 	var Index = __webpack_require__(201)
 	var GettingStarted = __webpack_require__(202)
 	var Example = __webpack_require__(203)
 
 	var Routes = (
-	  React.createElement(Route, {handler: Root, path: "/"}, 
+	  React.createElement(Route, {handler: Root, path: "/p5-mobile-cookbook/"}, 
 	    React.createElement(DefaultRoute, {handler: Index}), 
-	    React.createElement(Route, {path: "/getting-started", handler: GettingStarted}), 
-	    React.createElement(Route, {path: "/example", handler: Example})
+	    React.createElement(Route, {path: "getting-started/", handler: GettingStarted}), 
+	    React.createElement(Route, {path: "example/", handler: Example}), 
+
+	    React.createElement(Redirect, {from: "/p5-mobile-cookbook/getting-started/", to: "/p5-mobile-cookbook/getting-started"}), 
+	    React.createElement(Redirect, {from: "/p5-mobile-cookbook/example/", to: "/p5-mobile-cookbook/example"})
 	  )
 	)
 

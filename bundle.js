@@ -23629,7 +23629,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            id: "initial-props", 
 	            type: "application/json", 
 	            dangerouslySetInnerHTML: initialProps}), 
-	          React.createElement("script", {src: this.props.baseUrl + 'bundle.js'})
+	          React.createElement("script", {src: 'bundle.js'})
 	        )
 	      )
 	    )

@@ -1,4 +1,5 @@
 var React = require('react')
+//var p5AccelerationShake = require('./p5AccelerationShake.jsx')
 
 var Examples = React.createClass({
 
@@ -20,8 +21,8 @@ var Examples = React.createClass({
       }
     }
     var links = [
-      { href: '/p5-mobile-cookbook/examples/single', label: 'p5 Acceleration Shake' },
-      { href: '/p5-mobile-cookbook/examples/single', label: 'p5 Acceleration Bounce' }
+      { href: '/examples/p5AccelerationShake', label: 'p5 Acceleration Shake' },
+      { href: '/examples/p5AccelerationBounce', label: 'p5 Acceleration Bounce' }
     ]
 
     return (

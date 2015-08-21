@@ -23572,13 +23572,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	var GettingStarted = __webpack_require__(202)
 	var Examples = __webpack_require__(203)
 	var Single = __webpack_require__(204)
+	var p5AccelerationShake = __webpack_require__(205)
+	var p5AccelerationBounce = __webpack_require__(206)
 
 	var Routes = (
-	  React.createElement(Route, {handler: Root, path: "/p5-mobile-cookbook/"}, 
+	  React.createElement(Route, {handler: Root, path: "/"}, 
 	    React.createElement(DefaultRoute, {handler: Index}), 
-	    React.createElement(Route, {path: "/p5-mobile-cookbook/getting-started", handler: GettingStarted}), 
-	    React.createElement(Route, {path: "/p5-mobile-cookbook/examples", handler: Examples}), 
-	    React.createElement(Route, {path: "/p5-mobile-cookbook/examples/single", handler: Single}), 
+	    React.createElement(Route, {path: "/getting-started", handler: GettingStarted}), 
+	    React.createElement(Route, {path: "/examples", handler: Examples}), 
+	    React.createElement(Route, {path: "/examples/p5AccelerationShake", handler: p5AccelerationShake}), 
+	    React.createElement(Route, {path: "/examples/p5AccelerationBounce", handler: p5AccelerationBounce}), 
 
 	    "// ", React.createElement(Redirect, {from: "/p5-mobile-cookbook/getting-started/", to: "/p5-mobile-cookbook/getting-started"}), 
 	    "// ", React.createElement(Redirect, {from: "/p5-mobile-cookbook/examples/", to: "/p5-mobile-cookbook/examples"})
@@ -23587,16 +23590,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Routes
 
-	// var Routes = (
-	//   <Route handler={Root} path='/p5-mobile-cookbook/'>
-	//     <DefaultRoute handler={Index} />
-	//     <Route path='getting-started/' handler={GettingStarted} />
-	//     <Route path='example/' handler={Example} />
-
-	//     <Redirect from='/p5-mobile-cookbook/getting-started/' to='/p5-mobile-cookbook/getting-started' />
-	//     <Redirect from='/p5-mobile-cookbook/example/' to='/p5-mobile-cookbook/example' />
-	//   </Route>
-	// )
 
 /***/ },
 /* 197 */
@@ -23629,7 +23622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            id: "initial-props", 
 	            type: "application/json", 
 	            dangerouslySetInnerHTML: initialProps}), 
-	          React.createElement("script", {src: 'bundle.js'})
+	          React.createElement("script", {src: '/bundle.js'})
 	        )
 	      )
 	    )
@@ -23655,15 +23648,15 @@ return /******/ (function(modules) { // webpackBootstrap
 		render: function () {
 			return (
 				React.createElement("nav", {className: "sm-flex border-bottom"}, 
-			        React.createElement("a", {href: this.props.baseUrl, 
+			        React.createElement("a", {href: "/", 
 			          className: "btn py2"}, 
 			          "p5 MOBILE COOKBOOK"
 			        ), 
-			        React.createElement("a", {href: this.props.baseUrl + 'getting-started', 
+			        React.createElement("a", {href: "/getting-started", 
 			          className: "btn py2"}, 
 			          "Getting Started"
 			        ), 
-			        React.createElement("a", {href: this.props.baseUrl + 'examples', 
+			        React.createElement("a", {href: "/examples", 
 			          className: "btn py2 sm-show"}, 
 			          "Examples"
 			        )
@@ -23672,18 +23665,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		}
 
 	})
-
-	// var Nav = React.createClass({
-	//   render: function () {
-	//     return (
-	//       <header>
-	//         <Link to='/'>Index</Link>
-	//         <Link to='/getting-started'>Getting Started</Link>
-	//         <Link to='/example'>Example</Link>
-	//       </header>
-	//     )
-	//   }
-	// })
 
 	module.exports = Nav
 
@@ -23799,6 +23780,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1)
+	//var p5AccelerationShake = require('./p5AccelerationShake.jsx')
 
 	var Examples = React.createClass({displayName: "Examples",
 
@@ -23820,8 +23802,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	    var links = [
-	      { href: '/p5-mobile-cookbook/examples/single', label: 'p5 Acceleration Shake' },
-	      { href: '/p5-mobile-cookbook/examples/single', label: 'p5 Acceleration Bounce' }
+	      { href: '/examples/p5AccelerationShake', label: 'p5 Acceleration Shake' },
+	      { href: '/examples/p5AccelerationBounce', label: 'p5 Acceleration Bounce' }
 	    ]
 
 	    return (
@@ -23871,7 +23853,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function () {
 	    return (
 	      React.createElement("main", null, 
-	      	React.createElement("script", {src: "/sketches/sketch.js"}), 
+	        React.createElement("h1", null, this.props.example.title), 
+	        React.createElement("p", null, this.props.example.description), 
+	      	React.createElement("script", {src: "/sketches/" + this.props.example.fileName}), 
 	        React.createElement("div", {id: "p5Container"})
 	      )
 	    )
@@ -23879,6 +23863,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	})
 
 	module.exports = Single
+
+
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p5AccelerationShake = React.createClass({displayName: "p5AccelerationShake",
+	    render : function() {
+	         var example = {
+	             title : 'p5 Acceleration Shake',
+	             description : "Example description",
+	             fileName : "p5AccelerationShake.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p5AccelerationShake
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p5AccelerationBounce = React.createClass({displayName: "p5AccelerationBounce",
+	    render : function() {
+	         var example = {
+	             title : 'p5 Acceleration Bounce',
+	             description : "Example description",
+	             fileName : "p5AccelerationBounce.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p5AccelerationBounce
 
 /***/ }
 /******/ ])

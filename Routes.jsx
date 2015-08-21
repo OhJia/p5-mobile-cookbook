@@ -8,13 +8,16 @@ var Index = require('./components/Index.jsx')
 var GettingStarted = require('./components/GettingStarted.jsx')
 var Examples = require('./components/Examples.jsx')
 var Single = require('./components/Single.jsx')
+var p5AccelerationShake = require('./components/p5AccelerationShake.jsx')
+var p5AccelerationBounce = require('./components/p5AccelerationBounce.jsx')
 
 var Routes = (
-  <Route handler={Root} path='/p5-mobile-cookbook/'>
+  <Route handler={Root} path='/'>
     <DefaultRoute handler={Index} />
-    <Route path='/p5-mobile-cookbook/getting-started' handler={GettingStarted} />
-    <Route path='/p5-mobile-cookbook/examples' handler={Examples} />
-    <Route path='/p5-mobile-cookbook/examples/single' handler={Single} />
+    <Route path='/getting-started' handler={GettingStarted} />
+    <Route path='/examples' handler={Examples} />
+    <Route path='/examples/p5AccelerationShake' handler={p5AccelerationShake} />
+    <Route path='/examples/p5AccelerationBounce' handler={p5AccelerationBounce} />
 
     // <Redirect from='/p5-mobile-cookbook/getting-started/' to='/p5-mobile-cookbook/getting-started' />
     // <Redirect from='/p5-mobile-cookbook/examples/' to='/p5-mobile-cookbook/examples' />
@@ -22,14 +25,3 @@ var Routes = (
 )
 
 module.exports = Routes
-
-// var Routes = (
-//   <Route handler={Root} path='/p5-mobile-cookbook/'>
-//     <DefaultRoute handler={Index} />
-//     <Route path='getting-started/' handler={GettingStarted} />
-//     <Route path='example/' handler={Example} />
-
-//     <Redirect from='/p5-mobile-cookbook/getting-started/' to='/p5-mobile-cookbook/getting-started' />
-//     <Redirect from='/p5-mobile-cookbook/example/' to='/p5-mobile-cookbook/example' />
-//   </Route>
-// )

@@ -6,7 +6,12 @@ module.exports = {
     '/getting-started',
     '/examples',
     '/examples/p5AccelerationShake',
-    '/examples/p5AccelerationBounce'
+    '/examples/p5AccelerationBounce',
+    '/examples/p5TouchSimpleDraw',
+    '/examples/p5MultitouchZoom',
+    '/examples/p53DObject',
+    '/examples/p5HammerRotate',
+    '/examples/p5HammerDoubleTap'
   ]
 }
 

@@ -10,6 +10,11 @@ var Examples = require('./components/Examples.jsx')
 var Single = require('./components/Single.jsx')
 var p5AccelerationShake = require('./components/p5AccelerationShake.jsx')
 var p5AccelerationBounce = require('./components/p5AccelerationBounce.jsx')
+var p5TouchSimpleDraw = require('./components/p5TouchSimpleDraw.jsx')
+var p5MultitouchZoom = require('./components/p5MultitouchZoom.jsx')
+var p53DObject = require('./components/p53DObject.jsx')
+var p5HammerRotate = require('./components/p5HammerRotate.jsx')
+var p5HammerDoubleTap = require('./components/p5HammerDoubleTap.jsx')
 
 var Routes = (
   <Route handler={Root} path='/'>
@@ -18,6 +23,11 @@ var Routes = (
     <Route path='/examples' handler={Examples} />
     <Route path='/examples/p5AccelerationShake' handler={p5AccelerationShake} />
     <Route path='/examples/p5AccelerationBounce' handler={p5AccelerationBounce} />
+    <Route path='/examples/p5TouchSimpleDraw' handler={p5TouchSimpleDraw} />
+    <Route path='/examples/p5MultitouchZoom' handler={p5MultitouchZoom} />
+    <Route path='/examples/p53DObject' handler={p53DObject} />
+    <Route path='/examples/p5HammerRotate' handler={p5HammerRotate} />
+    <Route path='/examples/p5HammerDoubleTap' handler={p5HammerDoubleTap} />
 
     // <Redirect from='/p5-mobile-cookbook/getting-started/' to='/p5-mobile-cookbook/getting-started' />
     // <Redirect from='/p5-mobile-cookbook/examples/' to='/p5-mobile-cookbook/examples' />

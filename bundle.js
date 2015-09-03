@@ -23574,6 +23574,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Single = __webpack_require__(204)
 	var p5AccelerationShake = __webpack_require__(205)
 	var p5AccelerationBounce = __webpack_require__(206)
+	var p5TouchSimpleDraw = __webpack_require__(207)
+	var p5MultitouchZoom = __webpack_require__(208)
+	var p53DObject = __webpack_require__(209)
+	var p5HammerRotate = __webpack_require__(210)
+	var p5HammerDoubleTap = __webpack_require__(211)
 
 	var Routes = (
 	  React.createElement(Route, {handler: Root, path: "/"}, 
@@ -23582,6 +23587,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    React.createElement(Route, {path: "/examples", handler: Examples}), 
 	    React.createElement(Route, {path: "/examples/p5AccelerationShake", handler: p5AccelerationShake}), 
 	    React.createElement(Route, {path: "/examples/p5AccelerationBounce", handler: p5AccelerationBounce}), 
+	    React.createElement(Route, {path: "/examples/p5TouchSimpleDraw", handler: p5TouchSimpleDraw}), 
+	    React.createElement(Route, {path: "/examples/p5MultitouchZoom", handler: p5MultitouchZoom}), 
+	    React.createElement(Route, {path: "/examples/p53DObject", handler: p53DObject}), 
+	    React.createElement(Route, {path: "/examples/p5HammerRotate", handler: p5HammerRotate}), 
+	    React.createElement(Route, {path: "/examples/p5HammerDoubleTap", handler: p5HammerDoubleTap}), 
 
 	    "// ", React.createElement(Redirect, {from: "/p5-mobile-cookbook/getting-started/", to: "/p5-mobile-cookbook/getting-started"}), 
 	    "// ", React.createElement(Redirect, {from: "/p5-mobile-cookbook/examples/", to: "/p5-mobile-cookbook/examples"})
@@ -23611,9 +23621,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement("html", null, 
 	        React.createElement("head", null, 
 	          React.createElement("title", null, this.props.title), 
+	          React.createElement("meta", {name: "viewport", content: "width=device-width, initial-scale=1"}), 
 	          React.createElement("style", {dangerouslySetInnerHTML: { __html: css}}), 
-	          React.createElement("script", {src: "/shared/p5.min.js"})
-
+	          React.createElement("script", {src: "/shared/p5.min.js"}), 
+	          React.createElement("script", {src: "/shared/hammer.min.js"})
 	        ), 
 	        React.createElement("body", {className: "p2"}, 
 	          React.createElement(Nav, React.__spread({},  this.props)), 
@@ -23647,24 +23658,32 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		render: function () {
 			return (
-				React.createElement("nav", {className: "sm-flex border-bottom"}, 
+				React.createElement("nav", {className: "md-flex border-bottom"}, 
 			        React.createElement("a", {href: "/", 
 			          className: "btn py2"}, 
 			          "p5 MOBILE COOKBOOK"
 			        ), 
 			        React.createElement("a", {href: "/getting-started", 
 			          className: "btn py2"}, 
-			          "Getting Started"
+			          "Getting Started" 
+			        ), 
+			        React.createElement("a", {href: "/getting-started", 
+			          className: "btn py2"}, 
+			          "Foundation"
 			        ), 
 			        React.createElement("a", {href: "/examples", 
-			          className: "btn py2 sm-show"}, 
+			          className: "btn py2"}, 
 			          "Examples"
+			        ), 
+			        React.createElement("a", {href: "/examples", 
+			          className: "btn py2"}, 
+			          "Other Resources"
 			        )
 			    )
 			)
 		}
 
-	})
+	});
 
 	module.exports = Nav
 
@@ -23787,9 +23806,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	  renderLink: function(item, i) {
 	    return (
 	      React.createElement("li", {key: i}, 
-	        React.createElement("a", {href: item.href, 
-	          className: "h2 bold block"}, 
-	          item.label
+	        React.createElement("div", {className: "flex sm-col sm-col-4 py3"}, 
+	          React.createElement("a", {href: item.href, 
+	             className: "bg-purple btn px2 py4 h2 bold"}, 
+	            item.label
+	          )
+	        )
+	      )
+	    )
+	  },
+
+	  renderGroup: function(item, i) {
+	    return (
+	      React.createElement("li", {key: i}, 
+	        React.createElement("div", {className: "sm-flex mxn2"}, 
+	          React.createElement("div", {className: "flex-auto px2"}, 
+	              React.createElement("h1", null, item.group), 
+	              React.createElement("ul", {className: "list-reset"}, 
+	                item.examples.map(this.renderLink)
+	              )
+	          )
 	        )
 	      )
 	    )
@@ -23802,24 +23838,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	    var links = [
-	      { href: '/examples/p5AccelerationShake', label: 'p5 Acceleration Shake' },
-	      { href: '/examples/p5AccelerationBounce', label: 'p5 Acceleration Bounce' }
+	      {
+	        group: 'p5 Core',
+	        examples: [
+	          { href: '/examples/p5AccelerationShake', label: 'p5 Acceleration Shake'},
+	          { href: '/examples/p5AccelerationBounce', label: 'p5 Acceleration Bounce' },
+	          { href: '/examples/p5TouchSimpleDraw', label: 'p5 Touch Simple Draw' },
+	          { href: '/examples/p5MultitouchZoom', label: 'p5 Multitouch Zoom' },
+	          { href: '/examples/p53DObject', label: 'p5 3D Object' }
+	        ]
+	      },
+	      {
+	        group: 'p5 + Hammer.js',
+	        examples: [
+	          {href: '/examples/p5HammerRotate', label: 'p5 Hammer Rotate'},
+	          {href: '/examples/p5HammerDoubleTap', label: 'p5 Hammer Double Tap'}
+	        ]
+	      }
 	    ]
 
 	    return (
 	      React.createElement("div", {
 	        className: "container px3 py3", 
 	        style: styles.container}, 
-	        React.createElement("div", {className: "sm-flex mxn2"}, 
-	          React.createElement("div", {className: "flex-auto px2"}, 
-	            React.createElement("h1", null, "Examples"), 
-	            React.createElement("ul", {className: "list-reset"}, 
-	              links.map(this.renderLink)
-	            )
-	          ), 
-	          React.createElement("div", {className: "px2 py4"}
-	          )
-	        )
+	          links.map(this.renderGroup)
 	      )
 	    )
 	  }
@@ -23829,19 +23871,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Examples
 
 
-	// var React = require('react')
 
-	// var Examples = React.createClass({
-	//   render: function () {
-	//     return (
-	//       <main>
-	//         <div id="p5Container"></div>       
-	//       </main>
-	//     )
-	//   }
-	// })
-
-	// module.exports = Examples
 
 /***/ },
 /* 204 */
@@ -23853,8 +23883,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function () {
 	    return (
 	      React.createElement("main", null, 
-	        React.createElement("h1", null, this.props.example.title), 
-	        React.createElement("p", null, this.props.example.description), 
 	      	React.createElement("script", {src: "/sketches/" + this.props.example.fileName}), 
 	        React.createElement("div", {id: "p5Container"})
 	      )
@@ -23913,6 +23941,126 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	module.exports = p5AccelerationBounce
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p5TouchSimpleDraw = React.createClass({displayName: "p5TouchSimpleDraw",
+	    render : function() {
+	         var example = {
+	             title : 'p5 Touch Simple Draw',
+	             description : "Example description",
+	             fileName : "p5TouchSimpleDraw.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p5TouchSimpleDraw
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p5MultitouchZoom = React.createClass({displayName: "p5MultitouchZoom",
+	    render : function() {
+	         var example = {
+	             title : 'p5 Multi-touch Zoom',
+	             description : "Example description",
+	             fileName : "p5MultitouchZoom.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p5MultitouchZoom
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p53DObject = React.createClass({displayName: "p53DObject",
+	    render : function() {
+	         var example = {
+	             title : 'p5 3D Object',
+	             description : "Example description",
+	             fileName : "p53DObject.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p53DObject
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p5HammerRotate = React.createClass({displayName: "p5HammerRotate",
+	    render : function() {
+	         var example = {
+	             title : 'p5 Hammer Rotate',
+	             description : "Example description",
+	             fileName : "p5HammerRotate.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p5HammerRotate
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1)
+	var Single = __webpack_require__(204)
+
+
+	var p5HammerDoubleTap = React.createClass({displayName: "p5HammerDoubleTap",
+	    render : function() {
+	         var example = {
+	             title : 'p5 Hammer Double Tap',
+	             description : "Example description",
+	             fileName : "p5HammerDoubleTap.js"
+	         };
+
+	         return (
+	             React.createElement(Single, {example: example})
+	         );
+	     }
+	});
+
+	module.exports = p5HammerDoubleTap
 
 /***/ }
 /******/ ])

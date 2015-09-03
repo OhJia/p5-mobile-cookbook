@@ -6,10 +6,27 @@ var Examples = React.createClass({
   renderLink: function(item, i) {
     return (
       <li key={i}>
-        <a href={item.href}
-          className='h2 bold block'>
-          {item.label}
-        </a>
+        <div className='flex sm-col sm-col-4 py3'>
+          <a href={item.href}
+             className='bg-purple btn px2 py4 h2 bold'>
+            {item.label}
+          </a>
+        </div>
+      </li>
+    )
+  },
+
+  renderGroup: function(item, i) {
+    return (
+      <li key={i}>
+        <div className='sm-flex mxn2'>
+          <div className='flex-auto px2'>
+              <h1>{item.group}</h1>
+              <ul className='list-reset'>
+                {item.examples.map(this.renderLink)}
+              </ul>
+          </div>
+        </div>
       </li>
     )
   },
@@ -21,24 +38,30 @@ var Examples = React.createClass({
       }
     }
     var links = [
-      { href: '/examples/p5AccelerationShake', label: 'p5 Acceleration Shake' },
-      { href: '/examples/p5AccelerationBounce', label: 'p5 Acceleration Bounce' }
+      {
+        group: 'p5 Core',
+        examples: [
+          { href: '/examples/p5AccelerationShake', label: 'p5 Acceleration Shake'},
+          { href: '/examples/p5AccelerationBounce', label: 'p5 Acceleration Bounce' },
+          { href: '/examples/p5TouchSimpleDraw', label: 'p5 Touch Simple Draw' },
+          { href: '/examples/p5MultitouchZoom', label: 'p5 Multitouch Zoom' },
+          { href: '/examples/p53DObject', label: 'p5 3D Object' }
+        ]
+      },
+      {
+        group: 'p5 + Hammer.js',
+        examples: [
+          {href: '/examples/p5HammerRotate', label: 'p5 Hammer Rotate'},
+          {href: '/examples/p5HammerDoubleTap', label: 'p5 Hammer Double Tap'}
+        ]
+      }
     ]
 
     return (
       <div
         className='container px3 py3'
         style={styles.container}>
-        <div className='sm-flex mxn2'>
-          <div className='flex-auto px2'>
-            <h1>Examples</h1>
-            <ul className='list-reset'>
-              {links.map(this.renderLink)}
-            </ul>
-          </div>
-          <div className='px2 py4'>
-          </div>
-        </div>
+          {links.map(this.renderGroup)}
       </div>
     )
   }
@@ -48,16 +71,3 @@ var Examples = React.createClass({
 module.exports = Examples
 
 
-// var React = require('react')
-
-// var Examples = React.createClass({
-//   render: function () {
-//     return (
-//       <main>
-//         <div id="p5Container"></div>       
-//       </main>
-//     )
-//   }
-// })
-
-// module.exports = Examples

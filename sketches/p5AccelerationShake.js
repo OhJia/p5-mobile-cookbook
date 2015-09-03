@@ -10,7 +10,7 @@ var faccChangeY = 0;
 var faccChangeZ = 0;
 
 function setup() {
-  var myCan = createCanvas(800, 1000);
+  var myCan = createCanvas(windowWidth, windowHeight);
   myCan.parent('p5Container');
   
   for (var i=0; i<20; i++) {

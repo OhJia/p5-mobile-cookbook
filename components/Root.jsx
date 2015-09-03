@@ -1,8 +1,12 @@
 var React = require('react')
 var Router = require('react-router')
 var RouteHandler = Router.RouteHandler
-var Nav = require('./Nav.jsx')
+// var MenuIcon = require('./MenuIcon.jsx')
+// var Nav = require('./Nav.jsx')
+var Menu= require('./Menu.jsx')
+
 var css = require('../css/base.css')
+var style = require('../css/style.css')
 
 var Root = React.createClass({
   render: function () {
@@ -20,7 +24,7 @@ var Root = React.createClass({
           <script src='/shared/hammer.min.js' />
         </head>
         <body className='p2'>
-          <Nav {...this.props} />
+          <Menu {...this.props} />
           <RouteHandler {...this.props} />
           <script
             id='initial-props'

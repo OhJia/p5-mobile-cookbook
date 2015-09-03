@@ -1,0 +1,10 @@
+@media (min-width: 769px) { 
+	#MenuIcon {
+		display: none;
+	}
+}
+@media (max-width: 768px) { 
+	#MenuIcon {
+		display: block;
+	}
+}

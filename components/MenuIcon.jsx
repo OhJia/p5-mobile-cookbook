@@ -9,23 +9,23 @@ var MenuIcon = React.createClass({
 		  width: 36,
 		  right: 32,
 		  bottom: 34 + 12 * index,
-		  zIndex: 1,
-		  opacity: this.state.hover ? 0.6 : 1
+		  zIndex: 100
+		  //opacity: this.state.hover ? 0.6 : 1
 		});
 	},
 
-	handleHover: function() {
-		this.setState({ hover: !this.state.hover });
-	},
+	// handleHover: function() {
+	// 	this.setState({ hover: !this.state.hover });
+	// },
 
-	getInitialState: function() {
-		return { hover: false };
-	},
+	// getInitialState: function() {
+	// 	return { hover: false };
+	// },
 	
 	render: function () {
 		var buttonStyle = {
 	      position: 'fixed',
-	      zIndex: 1,
+	      zIndex: 100,
 	      bottom: 20,
 	      right: 20,
 	      margin: 0,
@@ -39,13 +39,13 @@ var MenuIcon = React.createClass({
 
 	    return (
 	      <div>
-	        <button id="MenuIcon" onClick={ this.props.onClick }
+	        <button className="btn btn-primary bg-darken-1" id="MenuIcon" onClick={ this.props.onClick }
 	          onMouseEnter={ this.handleHover }
 	          onMouseLeave={ this.handleHover }
 	          style={ buttonStyle }>
-	          <span className="bg-purple" style={ this.getLineStyle(0) }></span>
-        	  <span className="bg-purple" style={ this.getLineStyle(1) }></span>
-        	  <span className="bg-purple" style={ this.getLineStyle(2) }></span>
+	          <span className="bg-navy" style={ this.getLineStyle(0) }></span>
+        	  <span className="bg-navy" style={ this.getLineStyle(1) }></span>
+        	  <span className="bg-navy" style={ this.getLineStyle(2) }></span>
 	        </button>
 	      </div>
 	    );

@@ -7,7 +7,8 @@ var p5AccelerationBounce = React.createClass({
          var example = {
              title : 'p5 Acceleration Bounce',
              description : "Example description",
-             fileName : "p5AccelerationBounce.js"
+             fileName : "p5AccelerationBounce.js",
+             codeLink: 'https://raw.githubusercontent.com/OhJia/p5-mobile-cookbook/test/sketches/p5AccelerationBounce.js'
          };
 
          return (

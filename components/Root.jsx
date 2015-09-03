@@ -18,12 +18,12 @@ var Root = React.createClass({
       <html>
         <head>
           <title>{this.props.title}</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no" />
           <style dangerouslySetInnerHTML={{ __html: css }} />
           <script src='/shared/p5.min.js' />
           <script src='/shared/hammer.min.js' />
         </head>
-        <body className='p2'>
+        <body>
           <Menu {...this.props} />
           <RouteHandler {...this.props} />
           <script

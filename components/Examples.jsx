@@ -8,7 +8,7 @@ var Examples = React.createClass({
       <li key={i}>
         <div className='flex sm-col sm-col-4 py3'>
           <a href={item.href}
-             className='bg-purple btn px2 py4 h2 bold'>
+             className='bg-p5 btn px2 py4 h2 bold'>
             {item.label}
           </a>
         </div>

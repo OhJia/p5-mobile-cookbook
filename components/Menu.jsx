@@ -8,10 +8,10 @@ var Menu = React.createClass({
 	  menuWrap: function(isOpen) {
 	    return ({
 	      position: 'fixed',
-	      zIndex: 2,
-	      width: 300,
+	      zIndex: 90,
+	      width: '100%',
 	      height: '100%',
-	      transform: isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(-100%, 0, 0)',
+	      WebkitTransform: isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(-100%, 0, 0)',
 	      transition: 'all 0.5s'
 	    });
 	  },
@@ -59,34 +59,31 @@ var Menu = React.createClass({
 	getInitialState : function() {
 	   return ({
 	      isOpen : false,
-	      test: 'nope'
+	      //test: 'nope'
 	   });
 	},
-	componentDidMount : function() {
-		if (window) {
-			this.setState({test : 'tested'});
-		}
-
-	},
+	// componentDidMount : function() {
+	// 	if (window) {
+	// 		this.setState({test : 'tested'});
+	// 	}
+	// },
 	toggleMenu: function() {
       // Order important: handle wrappers before setting sidebar state.
-      //this.applyWrapperStyles();
+      //this.applyWrapperStyles();     
       this.setState({ isOpen: !this.state.isOpen });
+      //alert(this.state.isOpen);
     },
 	render: function () {
-		var text = this.state.test;
+		//var text = this.state.test;
 		return(
 			<div>
-	          <div id="bm-overlay" ref="overlay" onClick={ this.toggleMenu } style={ this.styles.overlay(this.state.isOpen) }></div>
-	          <div id={ this.props.id } style={ this.styles.menuWrap(this.state.isOpen) }>
+	          
+	          <div style={ this.styles.menuWrap(this.state.isOpen) }>
 	            <div style={ this.styles.menu(this.state.isOpen) } >
 			    	<Nav />	              
 	            </div>
-	            <div style={ this.styles.closeButton ? this.styles.closeButton(this.state.isOpen) : {} }>
-	              <MenuIcon onClick={ this.toggleMenu } />
-	            </div>
+	            
 	          </div>
-	          <h1>{text}</h1>
 	          <MenuIcon onClick={ this.toggleMenu } />
 	        </div>
 		)

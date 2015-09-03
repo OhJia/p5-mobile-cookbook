@@ -23625,12 +23625,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement("html", null, 
 	        React.createElement("head", null, 
 	          React.createElement("title", null, this.props.title), 
-	          React.createElement("meta", {name: "viewport", content: "width=device-width, initial-scale=1"}), 
+	          React.createElement("meta", {name: "viewport", content: "width=device-width, initial-scale=1, user-scalable = no"}), 
 	          React.createElement("style", {dangerouslySetInnerHTML: { __html: css}}), 
 	          React.createElement("script", {src: "/shared/p5.min.js"}), 
 	          React.createElement("script", {src: "/shared/hammer.min.js"})
 	        ), 
-	        React.createElement("body", {className: "p2"}, 
+	        React.createElement("body", null, 
 	          React.createElement(Menu, React.__spread({},  this.props)), 
 	          React.createElement(RouteHandler, React.__spread({},  this.props)), 
 	          React.createElement("script", {
@@ -23665,9 +23665,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		    return ({
 		      position: 'fixed',
 		      zIndex: 2,
-		      width: 300,
+		      width: '100%',
 		      height: '100%',
-		      transform: isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(-100%, 0, 0)',
+		      WebkitTransform: isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(-100%, 0, 0)',
 		      transition: 'all 0.5s'
 		    });
 		  },
@@ -23714,28 +23714,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		getInitialState : function() {
 		   return ({
-		      isOpen : false
+		      isOpen : false,
+		      //test: 'nope'
 		   });
 		},
-		componentDidMount : function() {
-			this.setState({test : 'tested'});
-		},
+		// componentDidMount : function() {
+		// 	if (window) {
+		// 		this.setState({test : 'tested'});
+		// 	}
+		// },
 		toggleMenu: function() {
 	      // Order important: handle wrappers before setting sidebar state.
-	      //this.applyWrapperStyles();
+	      //this.applyWrapperStyles();     
 	      this.setState({ isOpen: !this.state.isOpen });
+	      //alert(this.state.isOpen);
 	    },
 		render: function () {
+			//var text = this.state.test;
 			return(
 				React.createElement("div", null, 
-		          React.createElement("div", {id: "bm-overlay", ref: "overlay", onClick:  this.toggleMenu, style:  this.styles.overlay(this.state.isOpen) }), 
-		          React.createElement("div", {id:  this.props.id, style:  this.styles.menuWrap(this.state.isOpen) }, 
+		          
+		          React.createElement("div", {style:  this.styles.menuWrap(this.state.isOpen) }, 
 		            React.createElement("div", {style:  this.styles.menu(this.state.isOpen) }, 
 				    	React.createElement(Nav, null)	              
-		            ), 
-		            React.createElement("div", {style:  this.styles.closeButton ? this.styles.closeButton(this.state.isOpen) : {}}, 
-		              React.createElement(MenuIcon, {onClick:  this.toggleMenu})
 		            )
+		            
 		          ), 
 		          React.createElement(MenuIcon, {onClick:  this.toggleMenu})
 		        )
@@ -23760,23 +23763,23 @@ return /******/ (function(modules) { // webpackBootstrap
 			  width: 36,
 			  right: 32,
 			  bottom: 34 + 12 * index,
-			  zIndex: 1,
-			  opacity: this.state.hover ? 0.6 : 1
+			  zIndex: 100
+			  //opacity: this.state.hover ? 0.6 : 1
 			});
 		},
 
-		handleHover: function() {
-			this.setState({ hover: !this.state.hover });
-		},
+		// handleHover: function() {
+		// 	this.setState({ hover: !this.state.hover });
+		// },
 
-		getInitialState: function() {
-			return { hover: false };
-		},
+		// getInitialState: function() {
+		// 	return { hover: false };
+		// },
 		
 		render: function () {
 			var buttonStyle = {
 		      position: 'fixed',
-		      zIndex: 1,
+		      zIndex: 100,
 		      bottom: 20,
 		      right: 20,
 		      margin: 0,
@@ -23790,13 +23793,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		    return (
 		      React.createElement("div", null, 
-		        React.createElement("button", {id: "MenuIcon", onClick:  this.props.onClick, 
+		        React.createElement("button", {className: "btn btn-primary bg-darken-1", id: "MenuIcon", onClick:  this.props.onClick, 
 		          onMouseEnter:  this.handleHover, 
 		          onMouseLeave:  this.handleHover, 
 		          style:  buttonStyle }, 
-		          React.createElement("span", {className: "bg-purple", style:  this.getLineStyle(0) }), 
-	        	  React.createElement("span", {className: "bg-purple", style:  this.getLineStyle(1) }), 
-	        	  React.createElement("span", {className: "bg-purple", style:  this.getLineStyle(2) })
+		          React.createElement("span", {className: "bg-navy", style:  this.getLineStyle(0) }), 
+	        	  React.createElement("span", {className: "bg-navy", style:  this.getLineStyle(1) }), 
+	        	  React.createElement("span", {className: "bg-navy", style:  this.getLineStyle(2) })
 		        )
 		      )
 		    );
@@ -23817,25 +23820,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		render: function () {
 			return (
-				React.createElement("nav", {className: "flex flex-column border-bottom", style:  { height: '100%'} }, 
+				React.createElement("nav", {className: "bg-white flex flex-column border-bottom", style:  { width: '100%', height: '100%'} }, 
 			        React.createElement("a", {href: "/", 
-			          className: "btn py2 block"}, 
+			          className: "btn py3 block border-bottom"}, 
 			          "p5 MOBILE COOKBOOK"
 			        ), 
 			        React.createElement("a", {href: "/getting-started", 
-			          className: "btn py2 block"}, 
-			          "Getting Started" 
+			          className: "btn py2 block border-bottom"}, 
+			          "Getting Started for Mobile Browser and Phonegap" 
 			        ), 
 			        React.createElement("a", {href: "/getting-started", 
-			          className: "btn py2 block"}, 
+			          className: "btn py2 block border-bottom"}, 
 			          "Foundation"
 			        ), 
 			        React.createElement("a", {href: "/examples", 
-			          className: "btn py2 block"}, 
+			          className: "btn py2 block border-bottom"}, 
 			          "Examples"
 			        ), 
 			        React.createElement("a", {href: "/examples", 
-			          className: "btn py2 block"}, 
+			          className: "btn py2 block border-bottom"}, 
 			          "Other Resources"
 			        )
 			    )
@@ -23856,7 +23859,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "body { margin: 0 }\nimg { max-width: 100% }\nsvg { max-height: 100% }\n/* Basscss Base Forms */\n\nfieldset,input,select,textarea {\n  font-family:inherit;\n  font-size:1rem;\n  box-sizing: border-box;\n  margin-top: 0;\n  margin-bottom: 0;\n}\n\nlabel {\n  vertical-align: middle;\n}\n\ninput[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week] {\n  height:2.25rem;\n  padding:.5rem .5rem;\n  vertical-align: middle;\n  -webkit-appearance: none;\n}\n\nselect {\n  line-height: 1.75;\n  padding:.5rem .5rem;\n}\n\nselect:not([multiple]) {\n  height:2.25rem;\n  vertical-align: middle;\n}\n\ntextarea {\n  line-height: 1.75;\n  padding:.5rem .5rem;\n}\n\n/* Basscss Defaults */\n\n/*\n\n   COLOR VARIABLES\n\n   - Cool\n   - Warm\n   - Gray Scale\n\n*/\n\n:root {\n\n  /* Cool */\n\n\n  /* Warm */\n\n\n  /* Gray scale */\n\n}\n/* Basscss Base Tables */\n\ntable {\n  border-collapse: separate;\n  border-spacing: 0;\n  max-width: 100%;\n  width: 100%;\n}\n\nth {\n  text-align: left;\n  font-weight:bold;\n}\n\ntd,th {\n  padding:.25rem 1rem;\n  line-height: inherit;\n}\n\nth { vertical-align: bottom }\ntd { vertical-align: top }\n/* Basscss Base Typography */\n\nbody {\n  line-height:1.5;\n  font-size:100%;\n}\n\nbody,h1,h2,h3,h4,h5,h6{\n  font-family:'Avenir Next', 'Hevletica Neue', sans-serif}\n\nh1,h2,h3,h4,h5,h6 {\n  font-weight:bold;\n  line-height:1.25;\n  margin-top:1em;\n  margin-bottom:.5em;\n}\n\ndl,ol,p,ul {\n  margin-top:0;\n  margin-bottom:1rem;\n}\n\ncode,pre,samp {\n  font-family:'Source Code Pro', Consolas, monospace;\n  font-size:inherit;\n}\n\npre {\n  margin-top:0;\n  margin-bottom:1rem;\n  overflow-x: scroll;\n}\n\nh1 { font-size:2rem }\nh2 { font-size:1.5rem }\nh3 { font-size:1.25rem }\nh4 { font-size:1rem }\nh5 { font-size:.875rem }\nh6 { font-size:.75rem }\n/* Basscss Color Base */\n\nbody {\n  color:#111;\n  background-color:#fff;\n}\n\na {\n  color:#0074d9;\n  text-decoration:none;\n}\n\na:hover {\n  text-decoration:underline;\n}\n\ncode,pre {\n  background-color:transparent;\n  border-radius:3px;\n}\n\nhr {\n  border: 0;\n  border-bottom-style:solid;\n  border-bottom-width:1px;\n  border-bottom-color:rgba(0,0,0,.125);\n}\n/* Basscss Color Forms */\n\n.field {\n  border-style: solid;\n  border-width:1px;\n  border-color:rgba(0,0,0,.125);\n  border-radius:3px;\n}\n\n.field.is-focused,.field:focus {\n  outline: none;\n  border-color:#0074d9;\n  box-shadow:0 0 0 2px rgba(0, 116, 217, 0.5);\n}\n\n.field.is-disabled,.field:disabled {\n  opacity: .5;\n}\n\n.field.is-disabled,.field.is-read-only,.field:disabled,.field:read-only:not(select){\n  background-color:rgba(0,0,0,.125)}\n\n\n.field.is-success {\n  border-color:#2ecc40;\n}\n\n.field.is-success.is-focused,.field.is-success:focus {\n  box-shadow:0 0 0 2px rgba(46, 204, 64, 0.5);\n}\n\n.field.is-warning {\n  border-color:#ffdc00;\n}\n\n.field.is-warning.is-focused,.field.is-warning:focus {\n  box-shadow:0 0 0 2px rgba(255, 220, 0, 0.5);\n}\n\n.field.is-error,.field:invalid {\n  border-color:#ff4136;\n}\n\n.field.is-error.is-focused,.field.is-error:focus,.field:invalid.is-focused,.field:invalid:focus {\n  box-shadow:0 0 0 2px rgba(255, 65, 54, 0.5);\n}\n/* Basscss Color Tables */\n\n.table-light td,.table-light th {\n  border-bottom-width:1px;\n  border-bottom-style: solid;\n  border-bottom-color:rgba(0,0,0,.125);\n}\n\n.table-light tr:last-child td {\n  border-bottom: 0;\n}\n/* Basscss Btn */\n\n.btn {\n  font-family:inherit;\n  font-size:inherit;\n  font-weight:bold;\n  cursor: pointer;\n  display: inline-block;\n  line-height:1.125rem;\n  padding:.5rem 1rem;\n  margin: 0;\n  height: auto;\n  border:1px solid transparent;\n  vertical-align: middle;\n  -webkit-appearance: none;\n  color: inherit;\n  background-color: transparent;\n}\n\n.btn,.btn:hover{\n  text-decoration: none}\n\n.btn:focus {\n  outline: none;\n  border-color:rgba(0,0,0,.125);\n  box-shadow:0 0 0 3px rgba(0,0,0,.25);\n}\n\n::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n/* Basscss Btn Primary */\n\n.btn-primary {\n  color:#fff;\n  background-color:#0074d9;\n  border-radius:3px;\n}\n\n.btn-primary:hover {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.0625);\n}\n\n.btn-primary:active {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.125),\n    inset 0 3px 4px 0 rgba(0,0,0,.25),\n    0 0 1px rgba(0,0,0,.125);\n}\n\n.btn-primary.is-disabled,.btn-primary:disabled {\n  opacity: .5;\n}\n/* Basscss Btn Outline */\n\n.btn-outline,.btn-outline:hover {\n  border-color: currentcolor;\n}\n\n.btn-outline {\n  border-radius:3px;\n}\n\n.btn-outline:hover {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.0625);\n}\n\n.btn-outline:active {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.125),\n    inset 0 3px 4px 0 rgba(0,0,0,.25),\n    0 0 1px rgba(0,0,0,.125);\n}\n\n.btn-outline.is-disabled,.btn-outline:disabled {\n  opacity: .5;\n}\n/* Basscss Type Scale */\n\n.h1 { font-size:2rem }\n.h2 { font-size:1.5rem }\n.h3 { font-size:1.25rem }\n.h4 { font-size:1rem }\n.h5 { font-size:.875rem }\n.h6 { font-size:.75rem }\n/* Basscss Utility Typography */\n\n.bold    { font-weight:bold }\n.regular { font-weight: normal }\n.italic  { font-style: italic }\n.caps    { text-transform: uppercase; letter-spacing: .2em; }\n\n.left-align   { text-align: left }\n.center       { text-align: center }\n.right-align  { text-align: right }\n.justify      { text-align: justify }\n\n.nowrap { white-space: nowrap }\n.break-word { word-wrap: break-word }\n\n.truncate {\n  max-width: 100%;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.list-reset {\n  list-style: none;\n  padding-left: 0;\n}\n/* Basscss Utility Layout */\n\n.inline       { display: inline }\n.block        { display: block }\n.inline-block { display: inline-block }\n.table        { display: table }\n.table-cell   { display: table-cell }\n\n.overflow-hidden { overflow: hidden }\n.overflow-scroll { overflow: scroll }\n.overflow-auto   { overflow: auto }\n\n.clearfix:after,.clearfix:before {\n  content: \" \";\n  display: table\n}\n.clearfix:after { clear: both }\n\n.left  { float: left }\n.right { float: right }\n\n.fit { max-width: 100% }\n\n.border-box { box-sizing: border-box }\n/* Basscss Align */\n\n.align-baseline { vertical-align: baseline }\n.align-top      { vertical-align: top }\n.align-middle   { vertical-align: middle }\n.align-bottom   { vertical-align: bottom }\n/* Basscss Utility White Space */\n\n.m0  { margin:        0 }\n.mt0 { margin-top:    0 }\n.mr0 { margin-right:  0 }\n.mb0 { margin-bottom: 0 }\n.ml0 { margin-left:   0 }\n\n.m1  { margin:.5rem }\n.mt1 { margin-top:.5rem }\n.mr1 { margin-right:.5rem }\n.mb1 { margin-bottom:.5rem }\n.ml1 { margin-left:.5rem }\n\n.m2  { margin:1rem }\n.mt2 { margin-top:1rem }\n.mr2 { margin-right:1rem }\n.mb2 { margin-bottom:1rem }\n.ml2 { margin-left:1rem }\n\n.m3  { margin:2rem }\n.mt3 { margin-top:2rem }\n.mr3 { margin-right:2rem }\n.mb3 { margin-bottom:2rem }\n.ml3 { margin-left:2rem }\n\n.m4  { margin:4rem }\n.mt4 { margin-top:4rem }\n.mr4 { margin-right:4rem }\n.mb4 { margin-bottom:4rem }\n.ml4 { margin-left:4rem }\n\n.mxn1 { margin-left:-.5rem; margin-right:-.5rem; }\n.mxn2 { margin-left:-1rem; margin-right:-1rem; }\n.mxn3 { margin-left:-2rem; margin-right:-2rem; }\n.mxn4 { margin-left:-4rem; margin-right:-4rem; }\n\n.mx-auto { margin-left: auto; margin-right: auto; }\n.p0 { padding: 0 }\n\n.p1  { padding:.5rem }\n.py1 { padding-top:.5rem; padding-bottom:.5rem }\n.px1 { padding-left:.5rem; padding-right:.5rem }\n\n.p2  { padding:1rem }\n.py2 { padding-top:1rem; padding-bottom:1rem }\n.px2 { padding-left:1rem; padding-right:1rem }\n\n.p3  { padding:2rem }\n.py3 { padding-top:2rem; padding-bottom:2rem }\n.px3 { padding-left:2rem; padding-right:2rem }\n\n.p4  { padding:4rem }\n.py4 { padding-top:4rem; padding-bottom:4rem }\n.px4 { padding-left:4rem; padding-right:4rem }\n/* Basscss Positions */\n\n.relative { position: relative }\n.absolute { position: absolute }\n.fixed    { position: fixed }\n\n.top-0    { top: 0 }\n.right-0  { right: 0 }\n.bottom-0 { bottom: 0 }\n.left-0   { left: 0 }\n\n.z1 { z-index: 1 }\n.z2 { z-index: 2 }\n.z3 { z-index: 3 }\n.z4 { z-index: 4 }\n/* Basscss Utility Responsive States */\n\n.lg-show,.md-show,.sm-show {\n  display: none !important\n}\n\n@media (min-width: 40em) {\n  .sm-show { display: block !important }\n}\n\n@media (min-width: 52em) {\n  .md-show { display: block !important }\n}\n\n@media (min-width: 64em) {\n  .lg-show { display: block !important }\n}\n\n\n@media (min-width: 40em) {\n  .sm-hide { display: none !important }\n}\n\n@media (min-width: 52em) {\n  .md-hide { display: none !important }\n}\n\n@media (min-width: 64em) {\n  .lg-hide { display: none !important }\n}\n\n.display-none { display: none !important }\n\n.hide {\n  position: absolute !important;\n  height: 1px;\n  width: 1px;\n  overflow: hidden;\n  clip: rect(1px,1px,1px,1px);\n}\n/* Basscss Grid */\n\n.container {\n  max-width:64em;\n  margin-left: auto;\n  margin-right: auto;\n}\n.col {\n  float: left;\n}\n\n.col,.col-right{\n  box-sizing: border-box}\n\n.col-right {\n  float: right;\n}\n\n.col-1 {\n  width: 8.33333%;\n}\n\n.col-2 {\n  width: 16.66667%;\n}\n\n.col-3 {\n  width: 25%;\n}\n\n.col-4 {\n  width: 33.33333%;\n}\n\n.col-5 {\n  width: 41.66667%;\n}\n\n.col-6 {\n  width: 50%;\n}\n\n.col-7 {\n  width: 58.33333%;\n}\n\n.col-8 {\n  width: 66.66667%;\n}\n\n.col-9 {\n  width: 75%;\n}\n\n.col-10 {\n  width: 83.33333%;\n}\n\n.col-11 {\n  width: 91.66667%;\n}\n\n.col-12 {\n  width: 100%;\n}\n@media (min-width: 40em) {\n\n  .sm-col {\n    float: left;\n  }.sm-col,.sm-col-right{\n    box-sizing: border-box}\n\n  .sm-col-right {\n    float: right;\n  }\n\n  .sm-col-1 {\n    width: 8.33333%;\n  }\n\n  .sm-col-2 {\n    width: 16.66667%;\n  }\n\n  .sm-col-3 {\n    width: 25%;\n  }\n\n  .sm-col-4 {\n    width: 33.33333%;\n  }\n\n  .sm-col-5 {\n    width: 41.66667%;\n  }\n\n  .sm-col-6 {\n    width: 50%;\n  }\n\n  .sm-col-7 {\n    width: 58.33333%;\n  }\n\n  .sm-col-8 {\n    width: 66.66667%;\n  }\n\n  .sm-col-9 {\n    width: 75%;\n  }\n\n  .sm-col-10 {\n    width: 83.33333%;\n  }\n\n  .sm-col-11 {\n    width: 91.66667%;\n  }\n\n  .sm-col-12 {\n    width: 100%;\n  }\n\n}\n@media (min-width: 52em) {\n\n  .md-col {\n    float: left;\n  }.md-col,.md-col-right{\n    box-sizing: border-box}\n\n  .md-col-right {\n    float: right;\n  }\n\n  .md-col-1 {\n    width: 8.33333%;\n  }\n\n  .md-col-2 {\n    width: 16.66667%;\n  }\n\n  .md-col-3 {\n    width: 25%;\n  }\n\n  .md-col-4 {\n    width: 33.33333%;\n  }\n\n  .md-col-5 {\n    width: 41.66667%;\n  }\n\n  .md-col-6 {\n    width: 50%;\n  }\n\n  .md-col-7 {\n    width: 58.33333%;\n  }\n\n  .md-col-8 {\n    width: 66.66667%;\n  }\n\n  .md-col-9 {\n    width: 75%;\n  }\n\n  .md-col-10 {\n    width: 83.33333%;\n  }\n\n  .md-col-11 {\n    width: 91.66667%;\n  }\n\n  .md-col-12 {\n    width: 100%;\n  }\n\n}\n@media (min-width: 64em) {\n\n  .lg-col {\n    float: left;\n  }.lg-col,.lg-col-right{\n    box-sizing: border-box}\n\n  .lg-col-right {\n    float: right;\n  }\n\n  .lg-col-1 {\n    width: 8.33333%;\n  }\n\n  .lg-col-2 {\n    width: 16.66667%;\n  }\n\n  .lg-col-3 {\n    width: 25%;\n  }\n\n  .lg-col-4 {\n    width: 33.33333%;\n  }\n\n  .lg-col-5 {\n    width: 41.66667%;\n  }\n\n  .lg-col-6 {\n    width: 50%;\n  }\n\n  .lg-col-7 {\n    width: 58.33333%;\n  }\n\n  .lg-col-8 {\n    width: 66.66667%;\n  }\n\n  .lg-col-9 {\n    width: 75%;\n  }\n\n  .lg-col-10 {\n    width: 83.33333%;\n  }\n\n  .lg-col-11 {\n    width: 91.66667%;\n  }\n\n  .lg-col-12 {\n    width: 100%;\n  }\n\n}\n/* Flex Object */\n\n.flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n\n.flex-column  { -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column }\n.flex-wrap    { -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap }\n\n.flex-center   { -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center }\n.flex-baseline { -webkit-box-align: baseline; -webkit-align-items: baseline; -ms-flex-align: baseline; align-items: baseline }\n.flex-stretch  { -webkit-box-align: stretch; -webkit-align-items: stretch; -ms-flex-align: stretch; align-items: stretch }\n.flex-start    { -webkit-box-align: start; -webkit-align-items: flex-start; -ms-flex-align: start; align-items: flex-start }\n.flex-end      { -webkit-box-align: end; -webkit-align-items: flex-end; -ms-flex-align: end; align-items: flex-end }\n\n.flex-justify  { -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between }\n\n/*\n * 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893\n */\n\n.flex-auto {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1 1 auto;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  min-width: 0; /* 1 */\n  min-height: 0; /* 1 */\n}\n.flex-grow { -webkit-box-flex: 1; -webkit-flex: 1 0 auto; -ms-flex: 1 0 auto; flex: 1 0 auto }\n.flex-none { -webkit-box-flex: 0; -webkit-flex: none; -ms-flex: none; flex: none }\n\n.flex-first { -webkit-box-ordinal-group: 0; -webkit-order: -1; -ms-flex-order: -1; order: -1 }\n.flex-last  { -webkit-box-ordinal-group: 100000; -webkit-order: 99999; -ms-flex-order: 99999; order: 99999 }\n@media (min-width: 40em) {\n  .sm-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n}\n@media (min-width: 52em) {\n  .md-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n}\n@media (min-width: 64em) {\n  .lg-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n}\n/* Basscss Color Borders */\n\n.border {\n  border-style: solid;\n  border-width:1px;\n  border-color:rgba(0,0,0,.125);\n}\n\n.border-top {\n  border-top-style: solid;\n  border-top-width:1px;\n  border-top-color:rgba(0,0,0,.125);\n}\n\n.border-right {\n  border-right-style: solid;\n  border-right-width:1px;\n  border-right-color:rgba(0,0,0,.125);\n}\n\n.border-bottom {\n  border-bottom-style: solid;\n  border-bottom-width:1px;\n  border-bottom-color:rgba(0,0,0,.125);\n}\n\n.border-left {\n  border-left-style: solid;\n  border-left-width:1px;\n  border-left-color:rgba(0,0,0,.125);\n}\n\n.border-none { border: 0 }\n\n.rounded { border-radius:3px }\n.circle  { border-radius: 50% }\n\n.rounded-top    { border-radius:3px 3px 0 0 }\n.rounded-right  { border-radius:0 3px 3px 0 }\n.rounded-bottom { border-radius:0 0 3px 3px }\n.rounded-left   { border-radius:3px 0 0 3px }\n\n.not-rounded { border-radius: 0 }\n/* Basscss Colors */\n\n.black  { color:#111 }\n.gray   { color:#aaa }\n.silver { color:#ddd }\n.white  { color:#fff }\n\n.aqua  { color:#7fdbff }\n.blue  { color:#0074d9 }\n.navy  { color:#001f3f }\n.teal  { color:#39cccc }\n.green { color:#2ecc40 }\n.olive { color:#3d9970 }\n.lime  { color:#01ff70 }\n\n.yellow  { color:#ffdc00 }\n.orange  { color:#ff851b }\n.red     { color:#ff4136 }\n.fuchsia { color:#f012be }\n.purple  { color:#b10dc9 }\n.maroon  { color:#85144b }\n\n.color-inherit { color: inherit }\n.muted { opacity: .5 }\n/* Basscss Background Colors */\n\n.bg-black  { background-color:#111 }\n.bg-gray   { background-color:#aaa }\n.bg-silver { background-color:#ddd }\n.bg-white  { background-color:#fff }\n\n.bg-aqua  { background-color:#7fdbff }\n.bg-blue  { background-color:#0074d9 }\n.bg-navy  { background-color:#001f3f }\n.bg-teal  { background-color:#39cccc }\n.bg-green { background-color:#2ecc40 }\n.bg-olive { background-color:#3d9970 }\n.bg-lime  { background-color:#01ff70 }\n\n.bg-yellow  { background-color:#ffdc00 }\n.bg-orange  { background-color:#ff851b }\n.bg-red     { background-color:#ff4136 }\n.bg-fuchsia { background-color:#f012be }\n.bg-purple  { background-color:#b10dc9 }\n.bg-maroon  { background-color:#85144b }\n\n.bg-darken-1 { background-color:rgba(0,0,0,.0625) }\n.bg-darken-2 { background-color:rgba(0,0,0,.125) }\n.bg-darken-3 { background-color:rgba(0,0,0,.25) }\n.bg-darken-4 { background-color:rgba(0,0,0,.5) }\n\n.bg-lighten-1 { background-color:rgba(255,255,255,.0625) }\n.bg-lighten-2 { background-color:rgba(255,255,255,.125) }\n.bg-lighten-3 { background-color:rgba(255,255,255,.25) }\n.bg-lighten-4 { background-color:rgba(255,255,255,.5) }\n@media (min-width: 769px) { \n\t#MenuIcon {\n\t\tdisplay: none;\n\t}\n}\n@media (max-width: 768px) { \n\t#MenuIcon {\n\t\tdisplay: block;\n\t}\n}", ""]);
+	exports.push([module.id, "body { margin: 0 }\nimg { max-width: 100% }\nsvg { max-height: 100% }\n/* Basscss Base Forms */\n\nfieldset,input,select,textarea {\n  font-family:inherit;\n  font-size:1rem;\n  box-sizing: border-box;\n  margin-top: 0;\n  margin-bottom: 0;\n}\n\nlabel {\n  vertical-align: middle;\n}\n\ninput[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week] {\n  height:2.25rem;\n  padding:.5rem .5rem;\n  vertical-align: middle;\n  -webkit-appearance: none;\n}\n\nselect {\n  line-height: 1.75;\n  padding:.5rem .5rem;\n}\n\nselect:not([multiple]) {\n  height:2.25rem;\n  vertical-align: middle;\n}\n\ntextarea {\n  line-height: 1.75;\n  padding:.5rem .5rem;\n}\n\n/* Basscss Defaults */\n\n/*\n\n   COLOR VARIABLES\n\n   - Cool\n   - Warm\n   - Gray Scale\n\n*/\n\n:root {\n\n  /* Cool */\n\n\n  /* Warm */\n\n\n  /* Gray scale */\n\n}\n/* Basscss Base Tables */\n\ntable {\n  border-collapse: separate;\n  border-spacing: 0;\n  max-width: 100%;\n  width: 100%;\n}\n\nth {\n  text-align: left;\n  font-weight:bold;\n}\n\ntd,th {\n  padding:.25rem 1rem;\n  line-height: inherit;\n}\n\nth { vertical-align: bottom }\ntd { vertical-align: top }\n/* Basscss Base Typography */\n\nbody {\n  line-height:1.5;\n  font-size:100%;\n}\n\nbody,h1,h2,h3,h4,h5,h6{\n  font-family:'Avenir Next', 'Hevletica Neue', sans-serif}\n\nh1,h2,h3,h4,h5,h6 {\n  font-weight:bold;\n  line-height:1.25;\n  margin-top:1em;\n  margin-bottom:.5em;\n}\n\ndl,ol,p,ul {\n  margin-top:0;\n  margin-bottom:1rem;\n}\n\ncode,pre,samp {\n  font-family:'Source Code Pro', Consolas, monospace;\n  font-size:inherit;\n}\n\npre {\n  margin-top:0;\n  margin-bottom:1rem;\n  overflow-x: scroll;\n}\n\nh1 { font-size:2rem }\nh2 { font-size:1.5rem }\nh3 { font-size:1.25rem }\nh4 { font-size:1rem }\nh5 { font-size:.875rem }\nh6 { font-size:.75rem }\n/* Basscss Color Base */\n\nbody {\n  color:#111;\n  background-color:#fff;\n}\n\na {\n  color:#0074d9;\n  text-decoration:none;\n}\n\na:hover {\n  text-decoration:underline;\n}\n\ncode,pre {\n  background-color:transparent;\n  border-radius:3px;\n}\n\nhr {\n  border: 0;\n  border-bottom-style:solid;\n  border-bottom-width:1px;\n  border-bottom-color:rgba(0,0,0,.125);\n}\n/* Basscss Color Forms */\n\n.field {\n  border-style: solid;\n  border-width:1px;\n  border-color:rgba(0,0,0,.125);\n  border-radius:3px;\n}\n\n.field.is-focused,.field:focus {\n  outline: none;\n  border-color:#0074d9;\n  box-shadow:0 0 0 2px rgba(0, 116, 217, 0.5);\n}\n\n.field.is-disabled,.field:disabled {\n  opacity: .5;\n}\n\n.field.is-disabled,.field.is-read-only,.field:disabled,.field:read-only:not(select){\n  background-color:rgba(0,0,0,.125)}\n\n\n.field.is-success {\n  border-color:#2ecc40;\n}\n\n.field.is-success.is-focused,.field.is-success:focus {\n  box-shadow:0 0 0 2px rgba(46, 204, 64, 0.5);\n}\n\n.field.is-warning {\n  border-color:#ffdc00;\n}\n\n.field.is-warning.is-focused,.field.is-warning:focus {\n  box-shadow:0 0 0 2px rgba(255, 220, 0, 0.5);\n}\n\n.field.is-error,.field:invalid {\n  border-color:#ff4136;\n}\n\n.field.is-error.is-focused,.field.is-error:focus,.field:invalid.is-focused,.field:invalid:focus {\n  box-shadow:0 0 0 2px rgba(255, 65, 54, 0.5);\n}\n/* Basscss Color Tables */\n\n.table-light td,.table-light th {\n  border-bottom-width:1px;\n  border-bottom-style: solid;\n  border-bottom-color:rgba(0,0,0,.125);\n}\n\n.table-light tr:last-child td {\n  border-bottom: 0;\n}\n/* Basscss Btn */\n\n.btn {\n  font-family:inherit;\n  font-size:inherit;\n  font-weight:bold;\n  cursor: pointer;\n  display: inline-block;\n  line-height:1.125rem;\n  padding:.5rem 1rem;\n  margin: 0;\n  height: auto;\n  border:1px solid transparent;\n  vertical-align: middle;\n  -webkit-appearance: none;\n  color: inherit;\n  background-color: transparent;\n}\n\n.btn,.btn:hover{\n  text-decoration: none}\n\n.btn:focus {\n  outline: none;\n  border-color:rgba(0,0,0,.125);\n  box-shadow:0 0 0 3px rgba(0,0,0,.25);\n}\n\n::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n/* Basscss Btn Primary */\n\n.btn-primary {\n  color:#fff;\n  background-color:#0074d9;\n  border-radius:3px;\n}\n\n.btn-primary:hover {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.0625);\n}\n\n.btn-primary:active {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.125),\n    inset 0 3px 4px 0 rgba(0,0,0,.25),\n    0 0 1px rgba(0,0,0,.125);\n}\n\n.btn-primary.is-disabled,.btn-primary:disabled {\n  opacity: .5;\n}\n/* Basscss Btn Outline */\n\n.btn-outline,.btn-outline:hover {\n  border-color: currentcolor;\n}\n\n.btn-outline {\n  border-radius:3px;\n}\n\n.btn-outline:hover {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.0625);\n}\n\n.btn-outline:active {\n  box-shadow:inset 0 0 0 20rem rgba(0,0,0,.125),\n    inset 0 3px 4px 0 rgba(0,0,0,.25),\n    0 0 1px rgba(0,0,0,.125);\n}\n\n.btn-outline.is-disabled,.btn-outline:disabled {\n  opacity: .5;\n}\n/* Basscss Type Scale */\n\n.h1 { font-size:2rem }\n.h2 { font-size:1.5rem }\n.h3 { font-size:1.25rem }\n.h4 { font-size:1rem }\n.h5 { font-size:.875rem }\n.h6 { font-size:.75rem }\n/* Basscss Utility Typography */\n\n.bold    { font-weight:bold }\n.regular { font-weight: normal }\n.italic  { font-style: italic }\n.caps    { text-transform: uppercase; letter-spacing: .2em; }\n\n.left-align   { text-align: left }\n.center       { text-align: center }\n.right-align  { text-align: right }\n.justify      { text-align: justify }\n\n.nowrap { white-space: nowrap }\n.break-word { word-wrap: break-word }\n\n.truncate {\n  max-width: 100%;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.list-reset {\n  list-style: none;\n  padding-left: 0;\n}\n/* Basscss Utility Layout */\n\n.inline       { display: inline }\n.block        { display: block }\n.inline-block { display: inline-block }\n.table        { display: table }\n.table-cell   { display: table-cell }\n\n.overflow-hidden { overflow: hidden }\n.overflow-scroll { overflow: scroll }\n.overflow-auto   { overflow: auto }\n\n.clearfix:after,.clearfix:before {\n  content: \" \";\n  display: table\n}\n.clearfix:after { clear: both }\n\n.left  { float: left }\n.right { float: right }\n\n.fit { max-width: 100% }\n\n.border-box { box-sizing: border-box }\n/* Basscss Align */\n\n.align-baseline { vertical-align: baseline }\n.align-top      { vertical-align: top }\n.align-middle   { vertical-align: middle }\n.align-bottom   { vertical-align: bottom }\n/* Basscss Utility White Space */\n\n.m0  { margin:        0 }\n.mt0 { margin-top:    0 }\n.mr0 { margin-right:  0 }\n.mb0 { margin-bottom: 0 }\n.ml0 { margin-left:   0 }\n\n.m1  { margin:.5rem }\n.mt1 { margin-top:.5rem }\n.mr1 { margin-right:.5rem }\n.mb1 { margin-bottom:.5rem }\n.ml1 { margin-left:.5rem }\n\n.m2  { margin:1rem }\n.mt2 { margin-top:1rem }\n.mr2 { margin-right:1rem }\n.mb2 { margin-bottom:1rem }\n.ml2 { margin-left:1rem }\n\n.m3  { margin:2rem }\n.mt3 { margin-top:2rem }\n.mr3 { margin-right:2rem }\n.mb3 { margin-bottom:2rem }\n.ml3 { margin-left:2rem }\n\n.m4  { margin:4rem }\n.mt4 { margin-top:4rem }\n.mr4 { margin-right:4rem }\n.mb4 { margin-bottom:4rem }\n.ml4 { margin-left:4rem }\n\n.mxn1 { margin-left:-.5rem; margin-right:-.5rem; }\n.mxn2 { margin-left:-1rem; margin-right:-1rem; }\n.mxn3 { margin-left:-2rem; margin-right:-2rem; }\n.mxn4 { margin-left:-4rem; margin-right:-4rem; }\n\n.mx-auto { margin-left: auto; margin-right: auto; }\n.p0 { padding: 0 }\n\n.p1  { padding:.5rem }\n.py1 { padding-top:.5rem; padding-bottom:.5rem }\n.px1 { padding-left:.5rem; padding-right:.5rem }\n\n.p2  { padding:1rem }\n.py2 { padding-top:1rem; padding-bottom:1rem }\n.px2 { padding-left:1rem; padding-right:1rem }\n\n.p3  { padding:2rem }\n.py3 { padding-top:2rem; padding-bottom:2rem }\n.px3 { padding-left:2rem; padding-right:2rem }\n\n.p4  { padding:4rem }\n.py4 { padding-top:4rem; padding-bottom:4rem }\n.px4 { padding-left:4rem; padding-right:4rem }\n/* Basscss Positions */\n\n.relative { position: relative }\n.absolute { position: absolute }\n.fixed    { position: fixed }\n\n.top-0    { top: 0 }\n.right-0  { right: 0 }\n.bottom-0 { bottom: 0 }\n.left-0   { left: 0 }\n\n.z1 { z-index: 1 }\n.z2 { z-index: 2 }\n.z3 { z-index: 3 }\n.z4 { z-index: 4 }\n/* Basscss Utility Responsive States */\n\n.lg-show,.md-show,.sm-show {\n  display: none !important\n}\n\n@media (min-width: 40em) {\n  .sm-show { display: block !important }\n}\n\n@media (min-width: 52em) {\n  .md-show { display: block !important }\n}\n\n@media (min-width: 64em) {\n  .lg-show { display: block !important }\n}\n\n\n@media (min-width: 40em) {\n  .sm-hide { display: none !important }\n}\n\n@media (min-width: 52em) {\n  .md-hide { display: none !important }\n}\n\n@media (min-width: 64em) {\n  .lg-hide { display: none !important }\n}\n\n.display-none { display: none !important }\n\n.hide {\n  position: absolute !important;\n  height: 1px;\n  width: 1px;\n  overflow: hidden;\n  clip: rect(1px,1px,1px,1px);\n}\n/* Basscss Grid */\n\n.container {\n  max-width:64em;\n  margin-left: auto;\n  margin-right: auto;\n}\n.col {\n  float: left;\n}\n\n.col,.col-right{\n  box-sizing: border-box}\n\n.col-right {\n  float: right;\n}\n\n.col-1 {\n  width: 8.33333%;\n}\n\n.col-2 {\n  width: 16.66667%;\n}\n\n.col-3 {\n  width: 25%;\n}\n\n.col-4 {\n  width: 33.33333%;\n}\n\n.col-5 {\n  width: 41.66667%;\n}\n\n.col-6 {\n  width: 50%;\n}\n\n.col-7 {\n  width: 58.33333%;\n}\n\n.col-8 {\n  width: 66.66667%;\n}\n\n.col-9 {\n  width: 75%;\n}\n\n.col-10 {\n  width: 83.33333%;\n}\n\n.col-11 {\n  width: 91.66667%;\n}\n\n.col-12 {\n  width: 100%;\n}\n@media (min-width: 40em) {\n\n  .sm-col {\n    float: left;\n  }.sm-col,.sm-col-right{\n    box-sizing: border-box}\n\n  .sm-col-right {\n    float: right;\n  }\n\n  .sm-col-1 {\n    width: 8.33333%;\n  }\n\n  .sm-col-2 {\n    width: 16.66667%;\n  }\n\n  .sm-col-3 {\n    width: 25%;\n  }\n\n  .sm-col-4 {\n    width: 33.33333%;\n  }\n\n  .sm-col-5 {\n    width: 41.66667%;\n  }\n\n  .sm-col-6 {\n    width: 50%;\n  }\n\n  .sm-col-7 {\n    width: 58.33333%;\n  }\n\n  .sm-col-8 {\n    width: 66.66667%;\n  }\n\n  .sm-col-9 {\n    width: 75%;\n  }\n\n  .sm-col-10 {\n    width: 83.33333%;\n  }\n\n  .sm-col-11 {\n    width: 91.66667%;\n  }\n\n  .sm-col-12 {\n    width: 100%;\n  }\n\n}\n@media (min-width: 52em) {\n\n  .md-col {\n    float: left;\n  }.md-col,.md-col-right{\n    box-sizing: border-box}\n\n  .md-col-right {\n    float: right;\n  }\n\n  .md-col-1 {\n    width: 8.33333%;\n  }\n\n  .md-col-2 {\n    width: 16.66667%;\n  }\n\n  .md-col-3 {\n    width: 25%;\n  }\n\n  .md-col-4 {\n    width: 33.33333%;\n  }\n\n  .md-col-5 {\n    width: 41.66667%;\n  }\n\n  .md-col-6 {\n    width: 50%;\n  }\n\n  .md-col-7 {\n    width: 58.33333%;\n  }\n\n  .md-col-8 {\n    width: 66.66667%;\n  }\n\n  .md-col-9 {\n    width: 75%;\n  }\n\n  .md-col-10 {\n    width: 83.33333%;\n  }\n\n  .md-col-11 {\n    width: 91.66667%;\n  }\n\n  .md-col-12 {\n    width: 100%;\n  }\n\n}\n@media (min-width: 64em) {\n\n  .lg-col {\n    float: left;\n  }.lg-col,.lg-col-right{\n    box-sizing: border-box}\n\n  .lg-col-right {\n    float: right;\n  }\n\n  .lg-col-1 {\n    width: 8.33333%;\n  }\n\n  .lg-col-2 {\n    width: 16.66667%;\n  }\n\n  .lg-col-3 {\n    width: 25%;\n  }\n\n  .lg-col-4 {\n    width: 33.33333%;\n  }\n\n  .lg-col-5 {\n    width: 41.66667%;\n  }\n\n  .lg-col-6 {\n    width: 50%;\n  }\n\n  .lg-col-7 {\n    width: 58.33333%;\n  }\n\n  .lg-col-8 {\n    width: 66.66667%;\n  }\n\n  .lg-col-9 {\n    width: 75%;\n  }\n\n  .lg-col-10 {\n    width: 83.33333%;\n  }\n\n  .lg-col-11 {\n    width: 91.66667%;\n  }\n\n  .lg-col-12 {\n    width: 100%;\n  }\n\n}\n/* Flex Object */\n\n.flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n\n.flex-column  { -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column }\n.flex-wrap    { -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap }\n\n.flex-center   { -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center }\n.flex-baseline { -webkit-box-align: baseline; -webkit-align-items: baseline; -ms-flex-align: baseline; align-items: baseline }\n.flex-stretch  { -webkit-box-align: stretch; -webkit-align-items: stretch; -ms-flex-align: stretch; align-items: stretch }\n.flex-start    { -webkit-box-align: start; -webkit-align-items: flex-start; -ms-flex-align: start; align-items: flex-start }\n.flex-end      { -webkit-box-align: end; -webkit-align-items: flex-end; -ms-flex-align: end; align-items: flex-end }\n\n.flex-justify  { -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between }\n\n/*\n * 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893\n */\n\n.flex-auto {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1 1 auto;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  min-width: 0; /* 1 */\n  min-height: 0; /* 1 */\n}\n.flex-grow { -webkit-box-flex: 1; -webkit-flex: 1 0 auto; -ms-flex: 1 0 auto; flex: 1 0 auto }\n.flex-none { -webkit-box-flex: 0; -webkit-flex: none; -ms-flex: none; flex: none }\n\n.flex-first { -webkit-box-ordinal-group: 0; -webkit-order: -1; -ms-flex-order: -1; order: -1 }\n.flex-last  { -webkit-box-ordinal-group: 100000; -webkit-order: 99999; -ms-flex-order: 99999; order: 99999 }\n@media (min-width: 40em) {\n  .sm-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n}\n@media (min-width: 52em) {\n  .md-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n}\n@media (min-width: 64em) {\n  .lg-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }\n}\n/* Basscss Color Borders */\n\n.border {\n  border-style: solid;\n  border-width:1px;\n  border-color:rgba(0,0,0,.125);\n}\n\n.border-top {\n  border-top-style: solid;\n  border-top-width:1px;\n  border-top-color:rgba(0,0,0,.125);\n}\n\n.border-right {\n  border-right-style: solid;\n  border-right-width:1px;\n  border-right-color:rgba(0,0,0,.125);\n}\n\n.border-bottom {\n  border-bottom-style: solid;\n  border-bottom-width:1px;\n  border-bottom-color:rgba(0,0,0,.125);\n}\n\n.border-left {\n  border-left-style: solid;\n  border-left-width:1px;\n  border-left-color:rgba(0,0,0,.125);\n}\n\n.border-none { border: 0 }\n\n.rounded { border-radius:3px }\n.circle  { border-radius: 50% }\n\n.rounded-top    { border-radius:3px 3px 0 0 }\n.rounded-right  { border-radius:0 3px 3px 0 }\n.rounded-bottom { border-radius:0 0 3px 3px }\n.rounded-left   { border-radius:3px 0 0 3px }\n\n.not-rounded { border-radius: 0 }\n/* Basscss Colors */\n\n.black  { color:#111 }\n.gray   { color:#aaa }\n.silver { color:#ddd }\n.white  { color:#fff }\n\n.aqua  { color:#7fdbff }\n.blue  { color:#0074d9 }\n.navy  { color:#001f3f }\n.teal  { color:#39cccc }\n.green { color:#2ecc40 }\n.olive { color:#3d9970 }\n.lime  { color:#01ff70 }\n\n.yellow  { color:#ffdc00 }\n.orange  { color:#ff851b }\n.red     { color:#ff4136 }\n.fuchsia { color:#f012be }\n.purple  { color:#b10dc9 }\n.maroon  { color:#85144b }\n\n.color-inherit { color: inherit }\n.muted { opacity: .5 }\n/* Basscss Background Colors */\n\n.bg-black  { background-color:#111 }\n.bg-gray   { background-color:#aaa }\n.bg-silver { background-color:#ddd }\n.bg-white  { background-color:#fff }\n\n.bg-aqua  { background-color:#7fdbff }\n.bg-blue  { background-color:#0074d9 }\n.bg-navy  { background-color:#001f3f }\n.bg-teal  { background-color:#39cccc }\n.bg-green { background-color:#2ecc40 }\n.bg-olive { background-color:#3d9970 }\n.bg-lime  { background-color:#01ff70 }\n\n.bg-yellow  { background-color:#ffdc00 }\n.bg-orange  { background-color:#ff851b }\n.bg-red     { background-color:#ff4136 }\n.bg-fuchsia { background-color:#f012be }\n.bg-purple  { background-color:#b10dc9 }\n.bg-maroon  { background-color:#85144b }\n\n.bg-darken-1 { background-color:rgba(0,0,0,.0625) }\n.bg-darken-2 { background-color:rgba(0,0,0,.125) }\n.bg-darken-3 { background-color:rgba(0,0,0,.25) }\n.bg-darken-4 { background-color:rgba(0,0,0,.5) }\n\n.bg-lighten-1 { background-color:rgba(255,255,255,.0625) }\n.bg-lighten-2 { background-color:rgba(255,255,255,.125) }\n.bg-lighten-3 { background-color:rgba(255,255,255,.25) }\n.bg-lighten-4 { background-color:rgba(255,255,255,.5) }\n@media (min-width: 769px) { \n\t#MenuIcon {\n\t\tdisplay: none;\n\t}\n}\n@media (max-width: 768px) { \n\t#MenuIcon {\n\t\tdisplay: block;\n\t}\n}\n\n.bg-p5 {\n\tbackground-color: #ED225D;\n}\n\n.color-p5 {\n\tcolor: #ED225D;\n}", ""]);
 
 	// exports
 
@@ -23926,7 +23929,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "@media (min-width: 769px) { \n\t#MenuIcon {\n\t\tdisplay: none;\n\t}\n}\n@media (max-width: 768px) { \n\t#MenuIcon {\n\t\tdisplay: block;\n\t}\n}", ""]);
+	exports.push([module.id, "@media (min-width: 769px) { \n\t#MenuIcon {\n\t\tdisplay: none;\n\t}\n}\n@media (max-width: 768px) { \n\t#MenuIcon {\n\t\tdisplay: block;\n\t}\n}\n\n.bg-p5 {\n\tbackground-color: #ED225D;\n}\n\n.color-p5 {\n\tcolor: #ED225D;\n}", ""]);
 
 	// exports
 
@@ -23956,13 +23959,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1)
 
 	var GettingStarted = React.createClass({displayName: "GettingStarted",
-	  render: function () {
-	    return (
-	      React.createElement("main", null, 
-	        "Getting Started component"
-	      )
-	    )
-	  }
+		testClick : function() {
+			if (window) window.alert('hi!!')
+		},
+		render: function () {
+		return (
+		  React.createElement("main", null, 
+			  React.createElement("div", {className: "p2"}, 
+				  React.createElement("h1", {onClick: this.testClick}, "hi!!!"), 
+				  "Getting Started component"
+			  )
+		  )
+		)
+		}
 	})
 
 	module.exports = GettingStarted
@@ -23981,7 +23990,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement("li", {key: i}, 
 	        React.createElement("div", {className: "flex sm-col sm-col-4 py3"}, 
 	          React.createElement("a", {href: item.href, 
-	             className: "bg-purple btn px2 py4 h2 bold"}, 
+	             className: "bg-p5 btn px2 py4 h2 bold"}, 
 	            item.label
 	          )
 	        )
@@ -24057,7 +24066,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return (
 	      React.createElement("main", null, 
 	      	React.createElement("script", {src: "/sketches/" + this.props.example.fileName}), 
-	        React.createElement("div", {id: "p5Container"})
+	        React.createElement("div", {id: "p5Container"}), 
+	        React.createElement("a", {href: "fromjia.com"}, 
+	            React.createElement("button", {className: "btn btn-primary bg-darken-1"}, 
+	            	"view code" 
+	            )
+	        )
 	      )
 	    )
 	  }

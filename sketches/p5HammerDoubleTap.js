@@ -14,6 +14,7 @@ var changeAmp = 0;
 
 function setup() {
   var myCan = createCanvas(windowWidth, windowHeight);
+  myCan.parent('p5Container');
   mc = new Hammer(myCan.elt);
   w = width+16;
   dx = (TWO_PI / period) * xspacing;

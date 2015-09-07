@@ -16,3 +16,44 @@
 .color-p5 {
 	color: #ED225D;
 }
+
+li {
+	list-style: none;
+}
+
+
+#editor {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	z-index: 2;
+	max-height: 0;
+	-webkit-transition: top .5s ease-in-out, max-height .5s ease-in-out;
+	-moz-transition: top .5s ease-in-out, max-height .5s ease-in-out;
+	-ms-transition: top .5s ease-in-out, max-height .5s ease-in-out;
+	transition: top .5s ease-in-out, max-height .5s ease-in-out;
+}
+#editor.open {
+	top: 0;
+	max-height: 1000000000%;
+}
+
+#p5Container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	z-index: 1;
+}
+
+/*
+@media (max-width: 768px) {
+	.exampleGroup .py3 {
+		padding-top: .75rem;
+		padding-bottom: .75rem;
+	}
+}*/

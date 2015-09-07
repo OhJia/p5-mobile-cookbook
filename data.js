@@ -4,6 +4,8 @@ module.exports = {
   routes: [
     '/',
     '/getting-started',
+    '/foundation',
+    '/other-resources',
     '/examples',
     '/examples/p5AccelerationShake',
     '/examples/p5AccelerationBounce',

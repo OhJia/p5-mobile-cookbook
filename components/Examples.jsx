@@ -1,14 +1,14 @@
 var React = require('react')
-//var p5AccelerationShake = require('./p5AccelerationShake.jsx')
+var Header = require('./Header.jsx')
 
 var Examples = React.createClass({
 
   renderLink: function(item, i) {
     return (
       <li key={i}>
-        <div className='flex sm-col sm-col-4 py3'>
+        <div className='sm-col sm-col-4 py3 left-0 right-0'>
           <a href={item.href}
-             className='bg-p5 btn px2 py4 h2 bold'>
+             className='bg-p5 btn px2 py4 h2 bold block'>
             {item.label}
           </a>
         </div>
@@ -19,24 +19,31 @@ var Examples = React.createClass({
   renderGroup: function(item, i) {
     return (
       <li key={i}>
-        <div className='sm-flex mxn2'>
-          <div className='flex-auto px2'>
-              <h1>{item.group}</h1>
+        <div className='mxn2 py1'>
+          <div className='px2'>
+              <h1 className="py0">{item.group}</h1>
               <ul className='list-reset'>
                 {item.examples.map(this.renderLink)}
               </ul>
           </div>
+          <div className="clearfix" />
         </div>
       </li>
     )
   },
 
   render: function () {
+    var page = {
+      title: "Examples",
+      description: "p5 core library, p5 + other libraries, such as Hammer.js, jQuery Mobile, and more"
+    }
+
     var styles = {
       container: {
         minHeight: '90vh'
       }
     }
+
     var links = [
       {
         group: 'p5 Core',
@@ -58,16 +65,21 @@ var Examples = React.createClass({
     ]
 
     return (
-      <div
-        className='container px3 py3'
-        style={styles.container}>
-          {links.map(this.renderGroup)}
-      </div>
+      <main>
+        <Header page={page} />
+        <div
+          className='container px2 py2'
+          style={styles.container}>
+          <button className="btn btn-primary col-12 py2">Suggest New</button>
+            {links.map(this.renderGroup)}
+        </div>
+      </main>
     )
   }
-
-})
+});
 
 module.exports = Examples
+
+
 
 

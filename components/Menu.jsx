@@ -69,7 +69,7 @@ var Menu = React.createClass({
 	// },
 	toggleMenu: function() {
       // Order important: handle wrappers before setting sidebar state.
-      //this.applyWrapperStyles();     
+      //this.applyWrapperStyles();
       this.setState({ isOpen: !this.state.isOpen });
       //alert(this.state.isOpen);
     },

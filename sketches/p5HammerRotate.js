@@ -7,6 +7,7 @@ var s;
 
 function setup(){
   var myCan = createCanvas(windowWidth, windowHeight);
+  myCan.parent('p5Container');
   mc = new Hammer(myCan.elt);
   mc.get('rotate').set({ enable: true });
   

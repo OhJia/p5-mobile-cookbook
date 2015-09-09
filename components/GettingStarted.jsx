@@ -1,24 +1,41 @@
 var React = require('react')
 var Header = require('./Header.jsx')
 
+var MobileBrowserContent = React.createClass({
+	render: function() {
+		return (
+			<div className="px2">
+	  			<h1 className="py0">3 Steps to setup</h1>
+	  			<li>
+	  				<p>1. Create a new folder and add the latest version of p5.min.js into the folder</p>
+	  			</li>
+	  			<li>
+	  				<p>2. Create a new folder and add the latest version of p5.min.js into the folder</p>
+	  				<p></p>
+	  			</li>
+	  		</div>
+		)
+	}
+})
+
+var PhonegapContent = React.createClass({
+	render: function() {
+		return(
+			<div className="px3"><h1>phonegap!!!</h1></div>
+		)
+	}
+})
+
 var GettingStarted = React.createClass({
 	showContent: function() {
 		//if (window) window.alert('browser!');
 		if (this.state.mobileBrowserContent) {
 			return (
-				<div className="px2">
-		  			<h1 className="py0">3 Steps to setup</h1>
-		  			<li>
-		  				<p>1. Create a new folder and add the latest version of p5.min.js into the folder</p>
-		  			</li>
-		  			<li>
-		  				<p>2. Create a new folder and add the latest version of p5.min.js into the folder</p>
-		  			</li>
-		  		</div>
+				<MobileBrowserContent />
 			)
 		} else {
 			return (
-				<div className="px3"><h1>phonegap!!!</h1></div>
+				<PhonegapContent />
 			)
 		}
 	},
